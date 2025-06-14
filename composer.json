@@ -1,0 +1,27 @@
+{
+    "name": "bst27/laravel-image-proxy",
+    "description": "A Laravel image proxy to cache, minify and modify images very easily.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Bst27\\ImageProxy\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bst27\\ImageProxy\\ImageProxyServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "laravel/framework": "^11.0|^12.0",
+        "spatie/image-optimizer": "^1.8",
+        "ext-openssl": "*"
+    }
+}
