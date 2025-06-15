@@ -23,5 +23,8 @@
         "laravel/framework": "^11.0|^12.0",
         "spatie/image-optimizer": "^1.8",
         "ext-openssl": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.4"
     }
 }
