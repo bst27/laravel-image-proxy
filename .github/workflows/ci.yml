@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run tests in Sail’s PHP-Composer container
+        run: |
+          docker run --rm \
+            -u "$(id -u):$(id -g)" \
+            -v "${{ github.workspace }}":/var/www/html \
+            -w /var/www/html \
+            laravelsail/php84-composer:latest \
+            sh -lc "composer install --no-interaction --prefer-dist && vendor/bin/phpunit"
