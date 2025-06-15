@@ -20,7 +20,7 @@ abstract class TestCase extends OrchestraTestCase
         $app['config']->set('image-proxy.disks.source', 'fixtures');
         $app['config']->set('filesystems.disks.fixtures', [
             'driver' => 'local',
-            'root'   => __DIR__ . '/Fixtures',
+            'root' => __DIR__.'/Fixtures',
         ]);
     }
 }

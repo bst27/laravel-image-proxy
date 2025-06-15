@@ -38,10 +38,10 @@ class ImageProxyController extends Controller
 
     private function decryptPayload(string $token): array
     {
-        $encoder   = app(TokenEncoder::class);
-        $cipher    = $encoder->decode($token);
+        $encoder = app(TokenEncoder::class);
+        $cipher = $encoder->decode($token);
         $encryptor = app(PayloadEncryptor::class);
-        $json      = $encryptor->decrypt($cipher);
+        $json = $encryptor->decrypt($cipher);
 
         $data = json_decode($json, true);
         if (! $data || ! isset($data['path'], $data['v'])) {
@@ -54,11 +54,11 @@ class ImageProxyController extends Controller
     private function processAndDeliver(array $data): Response
     {
         $sourceDisk = Storage::disk(config('image-proxy.disks.source'));
-        $cacheDisk  = Storage::disk(config('image-proxy.disks.cache'));
+        $cacheDisk = Storage::disk(config('image-proxy.disks.cache'));
 
         $sourcePath = $data['path'];
 
-        if (!$sourceDisk->exists($sourcePath)) {
+        if (! $sourceDisk->exists($sourcePath)) {
             abort(404);
         }
 
@@ -69,23 +69,23 @@ class ImageProxyController extends Controller
         }
 
         $strategyKey = $data['strategy'];
-        $strategies  = config('image-proxy.manipulation_strategy');
+        $strategies = config('image-proxy.manipulation_strategy');
 
         if (! isset($strategies[$strategyKey])) {
             abort(500, "Unknown image-proxy strategy: {$strategyKey}");
         }
 
-        $conf         = $strategies[$strategyKey];
-        $class        = $conf['class'];
-        $default      = $conf['params'] ?? [];
-        $mergeParams  = $data['mergeParams'] ?? [];
-        $params       = array_merge($default, $mergeParams);
+        $conf = $strategies[$strategyKey];
+        $class = $conf['class'];
+        $default = $conf['params'] ?? [];
+        $mergeParams = $data['mergeParams'] ?? [];
+        $params = array_merge($default, $mergeParams);
 
-        $ext       = pathinfo($sourcePath, PATHINFO_EXTENSION);
-        $cacheHash = $fileHash . '-' . md5(json_encode($params));
-        $cacheKey  = $cacheHash . '.' . $ext;
+        $ext = pathinfo($sourcePath, PATHINFO_EXTENSION);
+        $cacheHash = $fileHash.'-'.md5(json_encode($params));
+        $cacheKey = $cacheHash.'.'.$ext;
 
-        if (!$cacheDisk->exists($cacheKey)) {
+        if (! $cacheDisk->exists($cacheKey)) {
             /** @var ImageManipulator $manipulator */
             $manipulator = app($class);
             $fileContent = $manipulator->manipulate($fileContent, $params);
@@ -94,10 +94,11 @@ class ImageProxyController extends Controller
         }
 
         $stream = $cacheDisk->readStream($cacheKey);
-        return new StreamedResponse(function() use ($stream) {
+
+        return new StreamedResponse(function () use ($stream) {
             fpassthru($stream);
         }, 200, [
-            'Content-Type'  => $cacheDisk->mimeType($cacheKey),
+            'Content-Type' => $cacheDisk->mimeType($cacheKey),
             'Cache-Control' => 'public, max-age=31536000, immutable',
         ]);
     }

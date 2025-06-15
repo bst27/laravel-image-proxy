@@ -1,4 +1,5 @@
 <?php
+
 namespace Bst27\ImageProxy\Services;
 
 use Bst27\ImageProxy\Contracts\PayloadEncryptor;
@@ -6,6 +7,7 @@ use Bst27\ImageProxy\Contracts\PayloadEncryptor;
 class OpenSslPayloadEncryptor implements PayloadEncryptor
 {
     private const HASH_ALGORITHM = 'sha256';
+
     private const CIPHER_ALGORITHM = 'AES-256-ECB';
 
     public function encrypt(string $payload): string

@@ -9,7 +9,7 @@ class DefaultManipulator implements ImageManipulator
 {
     public function manipulate(string $fileContent, array $params): string
     {
-        $tmpFile  = tempnam(sys_get_temp_dir(), 'img');
+        $tmpFile = tempnam(sys_get_temp_dir(), 'img');
         file_put_contents($tmpFile, $fileContent);
 
         try {

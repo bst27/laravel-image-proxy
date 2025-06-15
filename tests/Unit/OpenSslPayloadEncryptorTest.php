@@ -7,12 +7,12 @@ use Bst27\ImageProxy\Tests\TestCase;
 
 class OpenSslPayloadEncryptorTest extends TestCase
 {
-    public function testEncryptDecryptRoundtrip()
+    public function test_encrypt_decrypt_roundtrip()
     {
-        $encryptor = new OpenSslPayloadEncryptor();
+        $encryptor = new OpenSslPayloadEncryptor;
 
         $payload = json_encode(['foo' => 'bar', 'baz' => 42]);
-        $cipher  = $encryptor->encrypt($payload);
+        $cipher = $encryptor->encrypt($payload);
 
         $this->assertNotEmpty($cipher);
         $this->assertNotSame($payload, $cipher);
