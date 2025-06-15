@@ -1,5 +1,9 @@
 # Laravel Image Proxy
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/bst27/laravel-image-proxy.svg?style=flat-square)](https://packagist.org/packages/bst27/laravel-image-proxy)
+![Tests](https://github.com/bst27/laravel-image-proxy/workflows/CI/badge.svg)
+[![Total Downloads](https://img.shields.io/packagist/dt/bst27/laravel-image-proxy.svg?style=flat-square)](https://packagist.org/packages/bst27/laravel-image-proxy)
+
 A Laravel image proxy to cache, minify and manipulate images very easily.
 
 ## Features
