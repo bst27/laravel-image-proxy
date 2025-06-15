@@ -110,3 +110,16 @@ php artisan vendor:publish --provider="Bst27\ImageProxy\ImageProxyServiceProvide
 This will create `config/image-proxy.php`.
 
 ---
+
+## Tests
+
+To run tests, you can execute the following command:
+
+```bash
+docker run --rm -it \
+  -u "$(id -u):$(id -g)" \
+  -v "$PWD":/var/www/html \
+  -w /var/www/html \
+  laravelsail/php84-composer:latest \
+  php vendor/bin/phpunit
+```
