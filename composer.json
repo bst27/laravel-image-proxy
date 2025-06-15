@@ -25,7 +25,8 @@
         "ext-openssl": "*"
     },
     "require-dev": {
-        "orchestra/testbench": "^10.4"
+        "orchestra/testbench": "^10.4",
+        "laravel/pint": "^1.22"
     },
     "autoload-dev": {
         "psr-4": {

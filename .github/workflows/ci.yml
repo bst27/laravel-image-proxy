@@ -21,4 +21,8 @@ jobs:
             -v "${{ github.workspace }}":/var/www/html \
             -w /var/www/html \
             laravelsail/php84-composer:latest \
-            sh -lc "composer install --no-interaction --prefer-dist && vendor/bin/phpunit"
+            sh -lc "
+              composer install --no-interaction --prefer-dist &&
+              vendor/bin/phpunit &&
+              vendor/bin/pint --test
+            "

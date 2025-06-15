@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 class DefaultManipulatorTest extends TestCase
 {
-    public function testManipulateReturnsCompressedPng()
+    public function test_manipulate_returns_compressed_png()
     {
         $binary = Storage::disk('fixtures')->get('images/60x40.png');
 
-        $manipulator = new DefaultManipulator();
-        $result      = $manipulator->manipulate($binary, []);
+        $manipulator = new DefaultManipulator;
+        $result = $manipulator->manipulate($binary, []);
 
         $this->assertIsString($result);
         $this->assertNotEmpty($result);

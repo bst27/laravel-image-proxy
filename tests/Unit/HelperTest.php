@@ -6,7 +6,7 @@ use Bst27\ImageProxy\Tests\TestCase;
 
 class HelperTest extends TestCase
 {
-    public function testProxyImageGeneratesValidUrl()
+    public function test_proxy_image_generates_valid_url()
     {
         $url = proxy_image('images/60x40.jpg');
         $this->assertStringStartsWith('http', $url);
@@ -14,7 +14,7 @@ class HelperTest extends TestCase
         $this->assertStringEndsWith('.jpg', $url);
     }
 
-    public function testProxyImageGeneratesValidUrlWithFilename()
+    public function test_proxy_image_generates_valid_url_with_filename()
     {
         $url = proxy_image('images/60x40.jpg', fileName: 'foo.jpg');
         $this->assertStringStartsWith('http', $url);

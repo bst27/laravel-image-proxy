@@ -7,10 +7,10 @@ use Bst27\ImageProxy\Tests\TestCase;
 
 class Base64UrlTokenEncoderTest extends TestCase
 {
-    public function testEncodeDecodeRoundtrip()
+    public function test_encode_decode_roundtrip()
     {
-        $encoder = new Base64UrlTokenEncoder();
-        $plain   = 'hello-world-123';
+        $encoder = new Base64UrlTokenEncoder;
+        $plain = 'hello-world-123';
         $encoded = $encoder->encode($plain);
 
         $this->assertNotEmpty($encoded);

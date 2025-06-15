@@ -4,7 +4,6 @@ namespace Bst27\ImageProxy;
 
 use Bst27\ImageProxy\Contracts\PayloadEncryptor;
 use Bst27\ImageProxy\Contracts\TokenEncoder;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class ImageProxyServiceProvider extends ServiceProvider
